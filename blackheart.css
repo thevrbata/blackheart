@@ -6,16 +6,24 @@
     display: none;
 }
 #stream-widget #header {
-    height: 18px;
+    height: 30px;
     position: relative;
 }
+
+#stream-widget #header #text {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+}
+
 #stream-widget #header #close-btn {
     position: absolute;
     right: 0;
     top: 0;
     display: block;
-    height: 18px;
-    width: 18px;
+    height: 28px;
+    width: 28px;
+    font-size: 28px;
 }
 
 #stream-widget #header #close-btn:after {

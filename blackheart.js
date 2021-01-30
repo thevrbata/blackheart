@@ -76,7 +76,7 @@ if (getCookie('twitch-widget-hidden') != 'true') {
         var xhr = new XMLHttpRequest();
         var current;
 
-        widget.innerHTML = '<div id="header"><span id="close-btn"/></div><div id="frame"></div>';
+        widget.innerHTML = '<div id="header"><div id="text">Заходи на стрим, дружище! <img draggable="false" role="img" class="emoji" alt="🙂" src="https://s.w.org/images/core/emoji/13.0.1/svg/1f642.svg"></div><span id="close-btn"/></div><div id="frame"></div>';
 
         var close = document.getElementById('close-btn');
 
@@ -104,7 +104,7 @@ if (getCookie('twitch-widget-hidden') != 'true') {
                     })
 
                     var content = '<iframe src="https://player.twitch.tv/?channel=' + current[0]['user_name'] + '&autoplay=true&muted=true&parent=tarkov.help" ' +
-                        'height="200" width="300" allowfullscreen="true"></iframe>';
+                        'height="200" width="340" allowfullscreen="true"></iframe>';
                     var frame = document.getElementById('frame');
                     frame.innerHTML = content;
 
