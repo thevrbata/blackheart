@@ -24,6 +24,7 @@
     height: 28px;
     width: 28px;
     font-size: 28px;
+    cursor: pointer;
 }
 
 #stream-widget #header #close-btn:after {
