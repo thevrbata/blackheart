@@ -19,7 +19,7 @@
 #stream-widget #header #close-btn {
     position: absolute;
     right: 0;
-    top: 0;
+    bottom: 8px;
     display: block;
     height: 28px;
     width: 28px;
