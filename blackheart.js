@@ -103,7 +103,7 @@ if (getCookie('twitch-widget-hidden') != 'true') {
                         return a.sort - b.sort;
                     })
 
-                    var content = '<iframe src="https://player.twitch.tv/?channel=' + current[0]['user_name'] + '&autoplay=true&muted=true&parent=sandbox.test" ' +
+                    var content = '<iframe src="https://player.twitch.tv/?channel=' + current[0]['user_name'] + '&autoplay=true&muted=true&parent=tarkov.help" ' +
                         'height="200" width="300" allowfullscreen="true"></iframe>';
                     var frame = document.getElementById('frame');
                     frame.innerHTML = content;
