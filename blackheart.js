@@ -113,7 +113,7 @@ if (getCookie('twitch-widget-hidden') != 'true') {
             }
         });
 
-        xhr.open("GET", "https://api.twitch.tv/helix/streams/?user_login=dunduk&user_login=rasty_airsoft&user_login=goldencargo");
+        xhr.open("GET", "https://api.twitch.tv/helix/streams/?user_login=dunduk&user_login=theblindshogun&user_login=goldencargo");
         xhr.setRequestHeader("Client-ID", "esye0xo89my4a5m1ftsio4l2xhrew6");
         xhr.setRequestHeader("Authorization", "Bearer 13ndel7rwcdxhp0t5378szaht7fpcq");
         xhr.send();
