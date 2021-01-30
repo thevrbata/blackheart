@@ -1,5 +1,4 @@
 class ClassWatcher {
-
     constructor(targetNode, classToWatch, classAddedCallback, classRemovedCallback) {
         this.targetNode = targetNode
         this.classToWatch = classToWatch
@@ -39,7 +38,7 @@ class ClassWatcher {
             }
         }
     }
-}
+};
 
 function prioritizeStreamers(streamer, key) {
     switch (streamer['user_name'].toLowerCase()) {
@@ -52,7 +51,7 @@ function prioritizeStreamers(streamer, key) {
         default:
             current[key]['sort'] = 1;
     }
-}
+};
 
 function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
@@ -118,4 +117,4 @@ if (getCookie('twitch-widget-hidden') != 'true') {
         xhr.setRequestHeader("Authorization", "Bearer 13ndel7rwcdxhp0t5378szaht7fpcq");
         xhr.send();
     }
-}
+};
