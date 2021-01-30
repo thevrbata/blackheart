@@ -82,7 +82,7 @@ if (getCookie('twitch-widget-hidden') != 'true') {
         close.addEventListener('click', function () {
             widget.style.display = 'none';
             widget.innerHTML = '';
-            document.cookie = "twitch-widget-hidden=true; max-age=172800; secure"
+            document.cookie = "twitch-widget-hidden=true; max-age=172800; secure; path=/"
         });
 
         if (document.body.classList.contains('wp-night-mode-on')) {
