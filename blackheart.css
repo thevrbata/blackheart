@@ -1,5 +1,6 @@
 #stream-widget {
-    position: absolute;
+    z-index: 100;
+    position: fixed;
     right: 20px;
     bottom: 20px;
     display: none;
