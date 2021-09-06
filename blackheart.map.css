@@ -1,0 +1,32 @@
+#stream-widget {
+    z-index: 100;
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    display: none;
+}
+#stream-widget #header {
+    height: 30px;
+    position: relative;
+}
+
+#stream-widget #header #text {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+}
+
+#stream-widget #header #close-btn {
+    position: absolute;
+    right: 0;
+    bottom: 8px;
+    display: block;
+    height: 28px;
+    width: 28px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+#stream-widget #header #close-btn:after {
+    content: "\00d7";
+}
