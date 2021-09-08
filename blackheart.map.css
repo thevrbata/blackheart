@@ -1,5 +1,5 @@
 #stream-widget {
-    z-index: 100;
+    z-index: 9999;
     position: fixed;
     left: 20px;
     bottom: 20px;
@@ -12,6 +12,8 @@
 
 #stream-widget #header #text {
     position: absolute;
+    font-size: 10px;
+    background: #eaeaea;
     bottom: 5px;
     left: 0;
 }
