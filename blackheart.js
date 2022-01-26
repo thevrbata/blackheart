@@ -114,7 +114,7 @@ if (getCookie('twitch-widget-hidden') != 'true') {
 
         xhr.open("GET", "https://api.twitch.tv/helix/streams/?user_login=dunduk&user_login=theblindshogun&user_login=goldencargo");
         xhr.setRequestHeader("Client-ID", "jft4xbv83d62uoh24r6kli5lwz674m");
-        xhr.setRequestHeader("Authorization", "Bearer buocp6a8qn7kwwpacbjkmk2gyimlqb");
+        xhr.setRequestHeader("Authorization", "Bearer k9tygdfuc0kyu1sh9rftwi5eq78lnm");
         xhr.send();
     }
 };
