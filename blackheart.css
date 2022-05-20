@@ -1,8 +1,8 @@
 #stream-widget {
     z-index: 100;
     position: fixed;
-    right: 20px;
-    bottom: 20px;
+    right: 189px;
+    bottom: 90px;
     display: none;
 }
 #stream-widget #header {
@@ -10,23 +10,21 @@
     position: relative;
 }
 
-#stream-widget #header #text {
-    position: absolute;
-    bottom: 5px;
-    left: 0;
+#stream-widget iframe {
+    border: 2px solid #00B285;
+    border-radius: 10px;
 }
 
 #stream-widget #header #close-btn {
     position: absolute;
-    right: 0;
-    bottom: 8px;
+    right: 2px;
+    bottom: 0;
     display: block;
-    height: 28px;
-    width: 28px;
     font-size: 28px;
     cursor: pointer;
 }
 
 #stream-widget #header #close-btn:after {
     content: "\00d7";
+    color: #00B285;
 }

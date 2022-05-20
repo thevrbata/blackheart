@@ -5,11 +5,6 @@ You need Twitch Dev app registration, collect from API ypur personal Bearer Toke
 
 TODO: Exclude auth data from code, streamers array from code, parent in frame from code
 
-### Minify js
-```bash
-terser --compress --mangle --output blackheart.min.js -- blackheart.js
-```
-
 ### Usage
 Add to head section:
 ```html
