@@ -1,94 +1,64 @@
-class Bloodboil {
-    cookieName = 'twitch-widget-hidden';
-    // Порядок показа стримеров (больше ключ - ниже приоритет)
-    streamerOrder = [
-        'tarkovhelp',
-        'theblindshogun',
-        'dunduk'
-    ];
-
-    constructor(id) {
-        this.id = id;
-
-        if (this.getCookie() != 'true') {
-            // Не показываем на мобильных устройствах
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            } else {
-                let initDom = this.initDOM.bind(this);
-                let initListeners = this.initListeners.bind(this);
-                this.checkOnline().then(function(streamerName) {
-                    if (streamerName.length > 0) {
-                        initDom();
-                        let frame = document.getElementById('frame');
-                        frame.innerHTML = '<iframe src="https://player.trovo.live/embed/player?streamername=' + streamerName + '&muted=1&autoplay=1&hidefollow=1&hidesub=1" height="200" width="350" allowfullscreen="true"></iframe>';
-                        initListeners();
-                    }
-                })
-            }
-        }
+function prioritizeStreamers(streamer, key) {
+    switch (streamer['user_name'].toLowerCase()) {
+        case 'dunduk':
+            current[key]['sort'] = 3;
+            break;
+        case 'goldencargo':
+            current[key]['sort'] = 2;
+            break;
+        default:
+            current[key]['sort'] = 1;
     }
+};
 
-    getCookie() {
-        let matches = document.cookie.match(new RegExp(
-            "(?:^|; )" + this.cookieName.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-        ));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
-    }
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 
-    setCookie() {
-        document.cookie = this.cookieName + "=true; max-age=172800; secure; path=/";
-    }
+if (getCookie('twitch-widget-hidden') != 'true') {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    } else {
+        var widget = document.getElementById('stream-widget');
+        var xhr = new XMLHttpRequest();
+        var current;
 
-    async checkOnline() {
-        for (const streamer of this.streamerOrder) {
-            let myHeaders = new Headers();
-            myHeaders.append("Client-ID", "7c5066daa26a52998c95152dad2931a7");
-            myHeaders.append("Content-Type", "application/json");
+        widget.innerHTML = '<div id="header"><span id="close-btn"/></div><div id="frame"></div>';
 
-            let raw = JSON.stringify({
-                "username": streamer
-            });
-
-            let requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-            let online = await this.fetchData(requestOptions);
-            if (online === true) {
-                return streamer;
-                break;
-            }
-        }
-        return false;
-    }
-
-    async fetchData(requestOptions)
-    {
-        const response = await fetch("https://open-api.trovo.live/openplatform/channels/id", requestOptions);
-        const streamerInfo = await response.json();
-
-        return streamerInfo.hasOwnProperty('is_live') && streamerInfo.is_live === true;
-    }
-
-    initDOM() {
-        this.widget = document.getElementById(this.id);
-        this.widget.innerHTML = '<div id="header"><span id="close-btn"/></div><div id="frame"></div>';
-        this.widget.style.display = 'block';
-    }
-
-    initListeners() {
-        let setCookie = this.setCookie.bind(this);
-        let widget = this.widget;
         var close = document.getElementById('close-btn');
+
         close.addEventListener('click', function () {
             widget.style.display = 'none';
             widget.innerHTML = '';
-            setCookie();
+            document.cookie = "twitch-widget-hidden=true; max-age=172800; secure; path=/"
         });
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                var obj = JSON.parse(this.responseText);
+                current = obj.data;
+                if (current.length > 0) {
+                    current.forEach(prioritizeStreamers);
+
+                    current.sort(function (a, b) {
+                        return a.sort - b.sort;
+                    })
+
+                    var content = '<iframe src="https://player.twitch.tv/?channel=' + current[0]['user_name'] + '&autoplay=true&muted=true&parent=tarkov.help" ' +
+                        'height="200" width="350" allowfullscreen="true"></iframe>';
+                    var frame = document.getElementById('frame');
+                    frame.innerHTML = content;
+
+                    widget.style.display = 'block';
+                }
+            }
+        });
+
+        xhr.open("GET", "https://api.twitch.tv/helix/streams/?user_login=dunduk&user_login=theblindshogun&user_login=goldencargo");
+        xhr.setRequestHeader("Client-ID", "jft4xbv83d62uoh24r6kli5lwz674m");
+        xhr.setRequestHeader("Authorization", "Bearer 9owutv3tor1jvpjd2uqvqvkjhji3et");
+        xhr.send();
     }
-}
-
-let TrovoPlayer = new Bloodboil('stream-widget');
-
+};
